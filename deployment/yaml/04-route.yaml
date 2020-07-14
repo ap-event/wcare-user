@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: wcareuser
+  namespace: wcare-ns
+  labels:
+    app: wcare-application
+    subname: wcareuser
+spec:
+  path: /
+  to:
+    kind: Service
+    name: wcareuser
+    weight: 100
+  port:
+    targetPort: my-http

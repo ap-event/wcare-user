@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wcareuser
+  namespace: wcare-ns
+  labels:
+    app: wcare-application
+    subname: wcareuser
+spec:
+  selector:
+    matchLabels:
+      app: wcare-application
+      subname: wcareuser
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wcare-application
+        subname: wcareuser
+    spec:
+      containers:
+        - name: container-wcareuser
+          image: "image-registry.openshift-image-registry.svc:5000/wcare-ns/wcareuser:latest"
+          imagePullPolicy: Always
+          ports:
+            - name: my-http
+              containerPort: 9021
